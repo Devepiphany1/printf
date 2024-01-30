@@ -1,46 +1,43 @@
 #include "main.h"
-
-/*
- *comments;
- *
+/**
+ * _printf - prints parameter
+ * @format: specific identifier.
+ * Return: 0
  */
-int _printf(const char *format, ...)
+int _printf(const char * const format, ...)
 {
-	unsigned int epip, s_count, count = 0;
+	convert p[] = {
+		{"%s", print_s}, {"%c", print_c},
+		{"%%", print_d},
+		{"%i", print_i}, {"%d", print_d}, {"%r", print_s},
+		{"%R", print_pointer}, {"%b", print_i},
+		{"%o", print_i}, {"%x", print_d}, {"%X", print_d},
+	};
 
 	va_list args;
-
-	if(!format || (format[0] == '%' && format[1] == '\0'))
-		return (-1);
+	int q = 0, r, length = 0;
 
 	va_start(args, format);
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+		return (-1);
 
-	for (epip = 0; format[epip] != '\0'; epip++)
+	while (format[q] != '\0')
 	{
-		if (format[epip] != '%')
+		r = 13;
+		while (r >= 0)
 		{
-			putchar(format[epip]);
+			if (p[r].ph[0] == format[q] && p[r].ph[1] == format[q + 1])
+			{
+				length += p[r].function(args);
+				q = q + 2;
+
+			}
+			r--;
 		}
+		_putchar(format[q]);
+		length++;
+		q++;
 	}
-	else if (format[epip + 1] == 'c')
-	{
-		putchar(va_arg(args, int));
-		epip++;
-
-	}
-	else if (format[epip + 1] == '%')
-	{
-		s_count = putss(va_args(args, *char));
-		epip++;
-		count += (s_count - 1);
-	}
-	else if (format [epip + 1 == '%'])
-	{
-		putchar('%');
-
-	}
-	count += 1;
+	va_end(args);
+	return (length);
 }
-
-va_end(args);
-return (count);
