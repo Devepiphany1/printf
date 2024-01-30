@@ -6,7 +6,7 @@
  */
 int _printf(const char *format, ...)
 {
-	unsigned int epip, count = 0;
+	unsigned int epip, s_count, count = 0;
 
 	va_list args;
 
@@ -22,14 +22,25 @@ int _printf(const char *format, ...)
 			putchar(format[epip]);
 		}
 	}
-	if (format[epip] == '%' && format[epip + 1] == 'c')
+	else if (format[epip + 1] == 'c')
 	{
-
+		putchar(va_arg(args, int));
+		epip++;
 
 	}
+	else if (format[epip + 1] == '%')
+	{
+		s_count = putss(va_args(args, *char));
+		epip++;
+		count += (s_count - 1);
+	}
+	else if (format [epip + 1 == '%'])
+	{
+		putchar('%');
 
+	}
 	count += 1;
 }
 
-
+va_end(args);
 return (count);
