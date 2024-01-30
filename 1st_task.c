@@ -10,6 +10,7 @@ int main()
 	/*
 	 * printf: prints output
 	 */
-	printf("My patner is %s,", "epip 27");
+
+	printf("My patner is %s, she is %d", "epip", 27);
 	return 0;
 }
