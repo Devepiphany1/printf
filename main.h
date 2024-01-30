@@ -4,15 +4,14 @@
 #include <stdarg.h>
 #include <unistd.h>
 #include <stdlib.h>
-/*
+/**
  *stdard: standard arguement
  *unistd:
  *@printf: prints strings
+ *putchar - putchar header file
+ *format - specifier
+ *Return: 0
  */
-int _epiputchar(char c)
-/*
- *@_epiputchar: Putchar
- *end of discussion
- */
+int putchar(char c);
 int _printf(const char *format, ...);
 #endif
