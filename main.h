@@ -4,7 +4,15 @@
 #include <stdarg.h>
 #include <unistd.h>
 #include <stdlib.h>
-
-int epiputchar(char c)
+/*
+ *stdard: standard arguement
+ *unistd:
+ *@printf: prints strings
+ */
+int _epiputchar(char c)
+/*
+ *@_epiputchar: Putchar
+ *end of discussion
+ */
 int _printf(const char *format, ...);
 #endif
